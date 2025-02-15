@@ -14,13 +14,16 @@ jobs:
         id: auth
         uses: 'google-github-actions/auth@v2'
         with:
-          project_id: 'My First Project'
+          project_id: 'polar-land-450610-r5'
           workload_identity_provider: 'projects/350557131038/locations/global/workloadIdentityPools/github-actions-provider/providers/github-actions-pool'
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
           version: 'latest'
           project_id: ${{ secrets.GCP_PROJ_ID }}
+      - name: 'Describe Secrets'
+        run: |
+             gcloud secrets describe "my-secret" --project="polar-land-450610-r5"          
         
       - name: Deploy to GCE
         uses: appleboy/ssh-action@v0.1.8
