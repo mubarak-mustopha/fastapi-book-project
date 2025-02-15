@@ -10,11 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          version: 'latest'
-          project_id: ${{ secrets.GCP_PROJ_ID }}  
       - name: Deploy to GCE
         uses: appleboy/ssh-action@v0.1.8
         with:
@@ -22,7 +17,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.GCP_PRIVATE_KEY }}
             script: |
-                cd fastapi-app
+                cd fastapi-book-project
                 git stash
                 git pull origin main
                 source venv/bin/activate
