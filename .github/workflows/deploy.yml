@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: 'Authenticate with GCP'
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'My First Project'
+          workload_identity_provider: 'projects/350557131038/locations/global/workloadIdentityPools/github-actions-provider/providers/github-actions-pool'
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
